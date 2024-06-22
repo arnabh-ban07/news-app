@@ -25,7 +25,7 @@ const App = () => {
     setLoading(true);
     setError(null);
 
-    let url = `https://newsapi.org/v2/top-headlines?country=us&pageSize=${pageSize}&page=${currentPage}&apiKey=4676d743239847149772709ea648ae0a`;
+    let url = `https://newsapi.org/v2/top-headlines?country=us&pageSize=${pageSize}&page=${currentPage}&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`;
     if (selectedCategory !== 'All') {
       url += `&category=${selectedCategory.toLowerCase()}`;
     }
