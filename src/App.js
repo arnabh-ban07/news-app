@@ -25,9 +25,13 @@ const App = () => {
     setLoading(true);
     setError(null);
 
-    const categoryQuery = selectedCategory !== 'All' ? `&category=${selectedCategory.toLowerCase()}` : '';
+    let url = `https://newsapi.org/v2/top-headlines?country=us&pageSize=${pageSize}&page=${currentPage}&apiKey=4676d743239847149772709ea648ae0a`;
+    if (selectedCategory !== 'All') {
+      url += `&category=${selectedCategory.toLowerCase()}`;
+    }
+
     try {
-      const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&pageSize=${pageSize}&page=${currentPage}${categoryQuery}&apiKey=4676d743239847149772709ea648ae0a`);
+      const response = await axios.get(url);
       setArticles(response.data.articles);
       setTotalResults(response.data.totalResults);
     } catch (err) {
@@ -96,4 +100,5 @@ const App = () => {
 };
 
 export default App;
+
 
